@@ -9,6 +9,13 @@
     transition: all 5s ease-in-out;
 }
 
+    
+@media screen and (max-width: 640px) {
+    .dialogbox {
+        width: 100%;
+    }
+}
+
 .dialog .h2 {
     margin-top: 0;
     color: #333;

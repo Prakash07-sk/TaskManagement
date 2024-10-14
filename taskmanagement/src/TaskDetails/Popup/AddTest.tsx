@@ -3,6 +3,7 @@ import Dialog from '../../Common/Dialog';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { AddNewTaskData } from '../Utils/TaskDatas.util';
+import { toast } from 'react-toastify';
 
 
 interface propsData {
@@ -22,6 +23,10 @@ export default function AddTestDetails(props: propsData) {
     } = methods;
 
     const SaveData = (data: any) => {
+        if(!data?.title || ! data?.description) {
+            toast.warn('All fields are required...')
+            return;
+        }
         dispatcher(AddNewTaskData(data));
         UpdateAddTaskDialog(false);
     }
@@ -30,8 +35,8 @@ export default function AddTestDetails(props: propsData) {
         <Dialog
             title={'Add new Task'}
             buttons={<>
-                <button type='submit' className='btn btn-secondary btn-sm' onClick={() => UpdateAddTaskDialog(false)}>Cancel</button>
-                <button type='submit' className='btn btn-primary pl-4 btn-sm' onClick={handleSubmit(data => SaveData(data))}>Add</button>
+                <button type='submit' className='btn btn-secondary btn-sm me-2' onClick={() => UpdateAddTaskDialog(false)}>Cancel</button>
+                <button type='submit' className='btn btn-primary pl-4 btn-sm me-2' onClick={handleSubmit(data => SaveData(data))}>Add</button>
 
             </>}
         >
@@ -45,16 +50,17 @@ export default function AddTestDetails(props: propsData) {
                             type="text"
                             name="title"
                             onChange={onChange}
+                            required
                             className="form-control"
                             placeholder="Enter Title..." />}
                     />
                      <Controller
                         name="description"
                         control={control}
-                        render={({ field: { onChange } }) => <input
-                            type="text"
+                        render={({ field: { onChange } }) => <textarea
                             name="description"
                             onChange={onChange}
+                            required
                             className="form-control mt-4"
                             placeholder="Enter description..." />}
                     />

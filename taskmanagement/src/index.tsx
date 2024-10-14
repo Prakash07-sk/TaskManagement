@@ -9,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.js"
 import AppNavigation from './AppNavigation';
 import 'reactjs-popup/dist/index.css';
+import { ToastContainer } from 'react-toastify';
 
 
 const root = ReactDOM.createRoot(
@@ -17,6 +18,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <Provider store={store}>
     <AppNavigation />
+    
   </Provider>
 );
 

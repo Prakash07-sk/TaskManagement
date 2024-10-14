@@ -3,6 +3,8 @@ import { GetUserId } from "../Redux/Store/LoginDetails/login.selector";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import { Paths } from "../Common/Path";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function AppNavigation() {
@@ -11,7 +13,7 @@ export default function AppNavigation() {
     const Login = lazy(() => import('../Login'));
     const TaskDetails = lazy(() => import('../TaskDetails'))
     return (
-        <div className = 'm-5'>
+        <div className='m-5'>
 
             <Router>
                 <Suspense fallback={<div>loading...</div>}>
@@ -27,6 +29,9 @@ export default function AppNavigation() {
                 </Suspense>
             </Router>
 
+            <ToastContainer
+                autoClose={3000}
+            />
         </div>
     );
 }
